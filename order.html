@@ -70,6 +70,40 @@
 <footer>
   <p>This is merely a Showcase. (Grow A Website)</p>
 </footer>
+<script>
+  const cards = document.querySelectorAll('.menu-card');
+  const cartDisplay = document.querySelector('.cart p');
 
+  cards.forEach(card => {
+    const minusBtn = card.querySelector('.qty button:first-of-type');
+    const plusBtn = card.querySelector('.qty button:last-of-type');
+    const input = card.querySelector('input');
+    const addBtn = card.querySelector('.btn');
+    const itemName = card.querySelector('h3').innerText;
+
+    plusBtn.onclick = function() {
+      let currentVal = parseInt(input.value);
+      input.value = currentVal + 1;
+    };
+
+    minusBtn.onclick = function() {
+      let currentVal = parseInt(input.value);
+      if (currentVal > 1) {
+        input.value = currentVal - 1;
+      }
+    };
+
+    addBtn.onclick = function() {
+      if (cartDisplay.innerText === "No items yet") {
+        cartDisplay.innerHTML = "";
+      }
+      
+      cartDisplay.innerHTML += "<div>" + input.value + "x " + itemName + "</div>";
+      
+      alert("Added " + input.value + " " + itemName + " to your order!");
+      input.value = 1;
+    };
+  });
+</script>
 </body>
 </html>
